@@ -45,5 +45,3 @@ These [cheatsheets](https://rstudio.com/resources/cheatsheets/) are provided by 
 - [Tidyr](https://rstudio.github.io/cheatsheets/tidyr.pdf)
 
 - [Data Visualization with ggplot2](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
-
-- [Cartography](https://github.com/rstudio/cheatsheets/raw/master/cartography.pdf)
