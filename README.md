@@ -21,10 +21,13 @@ An overview of the workshop material is listed here:
 1. R Script files
 2. Data files
 
-## External resources
+## If you are New to R/RStudio 
+Check out this powerpoint on the R Basics: https://github.com/kristineccles/Introduction_to_R/blob/master/intro_to_r.pdf
+
+# External resources
 Textbooks for general R use:
 
-- [R in a Nutshell](http://guianaplants.stir.ac.uk/seminar/resources/R_in_a_Nutshell_Second_Edition.pdf)
+- [R in a Nutshell](https://rbasicsworkshop.weebly.com/uploads/1/8/6/0/18603232/adler_2009_r-inanutshell.pdf)
 
 - [R for Data Science](https://r4ds.had.co.nz/transform.html)
 
