@@ -23,18 +23,20 @@ thyroid_df <- read.csv("tox21_thyroid.csv")
 ##########################################################################################
 #### Data Exploration ####
 # Explore the TPO assays data - plot example
-p1 <- ggplot(data = subset(thyroid_df, call == "Active") , aes(x=chemName, y=log10(ac50), color = assay))+
+p1 <- ggplot(data = subset(thyroid_df, call == "Active") , 
+             aes(x=chemName, y=log10(ac50), color = assay))+
   geom_point()+
   scale_x_discrete(guide = guide_axis(angle = 90)) +
   theme_minimal()+
   theme(text=element_text(size=8))+
-  labs(x= "AC50", y="Chemical Name")
+  labs(y= "AC50", x="Chemical Name")
 p1
 
 #### Example 1 ####
 #### Prepare Data ####
 # parse data for exercise - e.g. chemical with the Bisphenol B
-thyroid_AUR_BPB <- subset(thyroid_df, chemName == "Bisphenol B" & assay == "CCTE_Simmons_AUR_TPO_dn")
+thyroid_AUR_BPB <- subset(thyroid_df, chemName == "Bisphenol B" & 
+                            assay == "CCTE_Simmons_AUR_TPO_dn")
 
 #isolate the dose-response
 thyroid_dr_AUR_BPB <-  thyroid_AUR_BPB$Concentration.Response..Index.Concentration.Response.
@@ -48,12 +50,12 @@ table_data_AUR_BPB <- list()
 # Loop through each range and extract values
 for (range in ranges_AUR_BPB[[1]]) {
   values_AUR_BPB <- as.numeric(unlist(strsplit(range, ":")))
-  table_data_AUR_BPB <- c(table_data_AUR_BPB, values)
+  table_data_AUR_BPB <- c(table_data_AUR_BPB, values_AUR_BPB)
 }
 
 # Convert the list to a matrix
 num_cols_AUR_BPB <- length(values_AUR_BPB)
-table_matrix_AUR_BPB <- matrix(unlist(table_data_AUR_BPB), ncol = num_cols, byrow = TRUE)
+table_matrix_AUR_BPB <- matrix(unlist(table_data_AUR_BPB), ncol = num_cols_AUR_BPB, byrow = TRUE)
 # Convert the matrix to a data frame
 result_AUR_BPB <- as.data.frame(table_matrix_AUR_BPB)
 # Set column names
