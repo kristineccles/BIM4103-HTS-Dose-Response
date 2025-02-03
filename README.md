@@ -32,19 +32,19 @@ Textbooks for general R use:
 - [R for Data Science](https://r4ds.had.co.nz/transform.html)
 
 Statistics in R:
-- Chapter 9: [R Cookbook](http://www.bagualu.net/wordpress/wp-content/uploads/2015/10/R_Cookbook.pdf)
+- Chapter 9: [R Cookbook](https://rc2e.com)
 - For more a more in depth background in Statistics please reference material from my [Introduction to Statistics] (https://github.com/kristineccles/introduction_to_stats) course I previously taught. 
 
 R Cheatsheets:
 
 These [cheatsheets](https://rstudio.com/resources/cheatsheets/) are provided by the R community and RStudio, describing common procedures and packages. Good cheatsheets to look at are: 
 
-- [Base R](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
+- [Base R](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
 
-- [Data Import](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
+- [Data Import](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_data-import.pdf)
 
-- [Data Wrangling](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+- [Data Wrangling](https://www.rstudio.com/wp-content%2Fuploads%2F2015%2F02%2Fdata-wrangling-cheatsheet.pdf%2F)
 - [Dplyr](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf)
 - [Tidyr](https://rstudio.github.io/cheatsheets/tidyr.pdf)
 
-- [Data Visualization with ggplot2](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+- [Data Visualization with ggplot2](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
