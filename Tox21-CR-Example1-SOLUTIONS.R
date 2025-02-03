@@ -3,7 +3,8 @@
 # Example - CCTE_Simmons_AUR_TPO_dn
 # Retrieved from: https://ice.ntp.niehs.nih.gov/Tools?tool=curvesurfer
 # By: Kristin Eccles
-# Written February 4th, 2022
+# Written February 4th, 2024
+# Updated Febrary 2nd, 2025
 ##########################################################################################
 
 #load libraries
@@ -33,7 +34,7 @@ p1 <- ggplot(data = subset(thyroid_df, call == "Active") ,
   scale_x_discrete(guide = guide_axis(angle = 90)) +
   theme_minimal()+
   theme(text=element_text(size=8))+
-  labs(y= "AC50", x="Chemical Name")
+  labs(y= "Log10 AC50", x="Chemical Name")
 p1
 
 #### Example 1 ####
@@ -66,8 +67,8 @@ result_AUR_BPB <- as.data.frame(table_matrix_AUR_BPB)
 colnames(result_AUR_BPB) <- c("rep", "concentration", "response")
 result_AUR_BPB
 
-##### Dose Response Modelling ####
-# fit for mixtures modeling
+##### Q1: Dose Response Modelling ####
+# fit for mixtures modeling using DRC
 model_AUR_BPB<- drm(response~concentration, data=result_AUR_BPB,
                        fct=LL.4(fixed=c(NA, 0 , NA, NA), 
                                 names = c("Slope", "Lower Limit", "Upper Limit", "AC50")))
@@ -75,17 +76,15 @@ summary(model_AUR_BPB)
 # Quick Plot of curve fits
 plot(model_AUR_BPB)
 
-# get coefficients
+# get coefficients and 95% CI
 model_AUR_BPB_model_wCI <- tidy(model_AUR_BPB, conf.int = TRUE)
-# add 95% CI
-model_AUR_BPB_model_wCI$CI95 <- model_AUR_BPB_model_wCI$std.error *1.96
-model_AUR_BPB_model_wCI
 
-# Question 1: Compare your drc predicted AC50 value to the tcpl derived AC50 value? 
+# Question 1: Compare your drc predicted AC50 value to the tcpl derived AC50 value (found in thyroid_AUR_BPB )? 
 # Are the values the same? How can you tell?
 
-#Answer: While the two AC50 values are different(tcpl:1.47, drm:1.33 ), the tcpl derived AC50 is within the 
-#95% confidence interval (CI:0.884-1.78) of our drm derived AC50 so we can say they are statistically different from one another 
+# Answer: While the two AC50 values are different(tcpl:1.47, drm:1.33), the tcpl derived AC50 is within the 
+# 95% confidence interval (CI:0.569-2.09) of our drm derived AC50 so we can say they are not statistically different 
+# from one another 
 
 ##########################################################################################
 #### Example 2 ####
@@ -119,7 +118,7 @@ result_GUA_BPB <- as.data.frame(table_matrix_GUA_BPB)
 colnames(result_GUA_BPB) <- c("rep", "concentration", "response")
 result_GUA_BPB
 
-##### Dose Response Modelling ####
+##### Q2: Dose Response Modelling ####
 # fit for mixtures modeling
 model_GUA_BPB<- drm(response~concentration, data=result_GUA_BPB,
                     fct=LL.4(fixed=c(NA, 0,  NA, NA), 
@@ -128,21 +127,20 @@ summary(model_GUA_BPB)
 # Quick Plot of curve fits
 plot(model_GUA_BPB)
 
-# get coefficients
+# get coefficients and 95% CI
 model_GUA_BPB_model_wCI <- tidy(model_GUA_BPB, conf.int = TRUE)
-# add 95% CI
-model_GUA_BPB_model_wCI$CI95 <- model_GUA_BPB_model_wCI$std.error *1.96
-model_GUA_BPB_model_wCI
+
 
 # Question 2: Compare your drc predicted AC50 value to the tcpl derived AC50 value? 
 # Are the values the same? How can you tell?
 
-#Answer: this model is not a good fit according to DRM (high p-value on the model paramters) - looks more exponential than log-logistic
+#Answer: this model is not a good fit according to DRM (high p-value on the model parameters) - looks more exponential than log-logistic
 # the DRM AC50  is different the tcpl AC50 - tcpl has a couple pre-processing steps that combining the 
 # replicates which many explain the difference we observe
 
 # Question 3: Compare the AC50 measures between the CCTE_Simmons_GUA_TPO_dn
-# and the CCTE_Simmons_GUA_TPO_dn assays. Both assays inform on similar the same molecular target.
+# and the CCTE_Simmons_GUA_TPO_dn assays. Both assays inform on similar the same molecular target (you can find more information
+# about each assay on the US EPA CompTox Dashboard under the Assay/Gene tab: https://comptox.epa.gov/dashboard/)
 # Which AC50 value would you use for conducting a risk assessment and why?
 
 # Answer: Use the lowest AC50, it is the most potent, and therefore the most conservative (health protective) estimate

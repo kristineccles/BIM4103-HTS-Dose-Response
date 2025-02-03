@@ -3,12 +3,16 @@
 # Example - CCTE_Simmons_AUR_TPO_dn
 # Retrieved from: https://ice.ntp.niehs.nih.gov/Tools?tool=curvesurfer
 # By: Kristin Eccles
-# Written February 4th, 2022
+# Written February 4th, 2024
 ##########################################################################################
 
 #load libraries
 install.packages("stringr") #only need to install once
 install.packages("drc")
+install.packages("broom")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("ggplot2")
 
 library(stringr) #must be loaded every time
 library(drc)
@@ -29,7 +33,7 @@ p1 <- ggplot(data = subset(thyroid_df, call == "Active") ,
   scale_x_discrete(guide = guide_axis(angle = 90)) +
   theme_minimal()+
   theme(text=element_text(size=8))+
-  labs(y= "AC50", x="Chemical Name")
+  labs(y= "Log10 AC50", x="Chemical Name")
 p1
 
 #### Example 1 ####
@@ -71,24 +75,25 @@ summary(model_AUR_BPB)
 # Quick Plot of curve fits
 plot(model_AUR_BPB)
 
-# get coefficients
+# get coefficients and 95% CI
 model_AUR_BPB_model_wCI <- tidy(model_AUR_BPB, conf.int = TRUE)
-# add 95% CI
-model_AUR_BPB_model_wCI$CI95 <- model_AUR_BPB_model_wCI$std.error *1.96
-model_AUR_BPB_model_wCI
 
 # Question 1: Compare your drc predicted AC50 value to the tcpl derived AC50 value? 
 # Are the values the same? How can you tell?
 
 ##########################################################################################
 #### Example 2 ####
+
 # Estimate the AC50 value for Bisphenol B in the CCTE_Simmons_GUA_TPO_dn using sample code in the example above
+
+
 
 
 # Question 2: Compare your drc predicted AC50 value to the tcpl derived AC50 value? 
 # Are the values the same? How can you tell?
 
 # Question 3: Compare the AC50 measures between the CCTE_Simmons_GUA_TPO_dn
-# and the CCTE_Simmons_AUR_TPO_dn assays. Both assays inform on similar the same molecular target.
+# and the CCTE_Simmons_GUA_TPO_dn assays. Both assays inform on similar the same molecular target (you can find more information
+# about each assay on the US EPA CompTox Dashboard under the Assay/Gene tab: https://comptox.epa.gov/dashboard/)
 # Which AC50 value would you use for conducting a risk assessment and why?
 
